@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Finance Control</title>
+
+  <!-- Tailwind CDN (rápido para protótipos) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js para gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <!-- HEADER -->
+  <header class="bg-slate-900 text-white shadow sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-indigo-500 flex items-center justify-center font-bold">FC</div>
+        <h1 class="text-xl font-semibold">Finance Control</h1>
+        <span id="header-usdbrl" class="ml-4 text-sm bg-slate-800 px-3 py-1 rounded-full">USD/BRL — carregando...</span>
+        <span id="header-last-update" class="ml-2 text-xs opacity-75">atualizado: --:--</span>
+      </div>
+      <nav class="flex items-center gap-2">
+        <a href="#/dashboard" class="nav-btn">Dashboard</a>
+        <a href="#/portfolio" class="nav-btn">Carteira</a>
+        <a href="#/add" class="nav-btn">Adicionar</a>
+        <a href="#/news" class="nav-btn">Notícias</a>
+        <a href="#/settings" class="nav-btn">Configurações</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="app" class="max-w-7xl mx-auto p-4"></main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/router.js"></script>
+</body>
+</html>

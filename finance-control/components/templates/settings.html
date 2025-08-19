@@ -1,0 +1,46 @@
+
+<section class="grid gap-4">
+  <h2 class="text-lg font-semibold">Configurações</h2>
+  <form id="settings-form" class="card grid sm:grid-cols-2 gap-4">
+    <div>
+      <label class="text-sm">Atualizar a cada (minutos)</label>
+      <input name="refreshMinutes" type="number" min="1" class="input" value="5" />
+    </div>
+    <div>
+      <label class="text-sm">Cotações de Ações</label>
+      <select name="equityProvider" class="select">
+        <option value="yahoo">Yahoo Finance (sem chave)</option>
+        <option value="alpha">Alpha Vantage (precisa de chave)</option>
+      </select>
+      <p class="text-xs opacity-70 mt-1">Dica: para B3 use tickers com sufixo .SA (ex.: VALE3.SA). Para EUA, AAPL, MSFT etc.</p>
+    </div>
+    <div>
+      <label class="text-sm">Alpha Vantage API Key</label>
+      <input name="alphaKey" class="input" placeholder="Se escolher Alpha Vantage" />
+    </div>
+    <div>
+      <label class="text-sm">Cotações de Cripto</label>
+      <select name="cryptoProvider" class="select" disabled>
+        <option value="coingecko">Coingecko (padrão)</option>
+      </select>
+      <p class="text-xs opacity-70 mt-1">Use o ID do Coingecko no campo "ID provedor" ao adicionar (ex.: bitcoin, ethereum).</p>
+    </div>
+    <div class="sm:col-span-2">
+      <label class="text-sm">Feeds de Notícias (RSS)</label>
+      <textarea name="newsFeeds" rows="5" class="input"></textarea>
+      <p class="text-xs opacity-70 mt-1">Um por linha. Exemplos: Infomoney, Valor, BBC Business. O sistema tentará carregar via proxy público (AllOrigins).</p>
+    </div>
+    <div class="sm:col-span-2 flex gap-2">
+      <button class="btn" type="submit">Salvar Configurações</button>
+      <button class="btn-secondary" type="button" id="reset-btn">Limpar Carteira</button>
+    </div>
+  </form>
+  <div class="text-xs opacity-70">
+    <p><strong>Observações de funcionamento:</strong></p>
+    <ul class="list-disc ml-5 mt-1">
+      <li>Cotações são atualizadas automaticamente a cada X minutos (definido acima).</li>
+      <li>USD/BRL sempre aparece no topo, via <code>exchangerate.host</code>.</li>
+      <li>Para alguns ativos, o provedor pode ter limitações de CORS ou de taxas. Se falhar, informe um preço manual temporário.</li>
+    </ul>
+  </div>
+</section>
