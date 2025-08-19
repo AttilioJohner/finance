@@ -1,0 +1,33 @@
+
+<section class="grid gap-4">
+  <div id="dash-summary"></div>
+
+  <div class="card">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="font-semibold">Alocação por Classe</h2>
+    </div>
+    <canvas id="alloc-chart" height="160"></canvas>
+  </div>
+
+  <div class="card">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="font-semibold">Maiores Posições</h2>
+      <a href="#/portfolio" class="text-indigo-700 text-sm">ver carteira</a>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Símbolo</th>
+            <th>Nome</th>
+            <th>Qtde</th>
+            <th>Preço</th>
+            <th>Valor Atual</th>
+            <th>Variação</th>
+          </tr>
+        </thead>
+        <tbody id="dash-top"></tbody>
+      </table>
+    </div>
+  </div>
+</section>

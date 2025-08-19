@@ -1,0 +1,68 @@
+
+<section class="grid gap-4">
+  <h2 id="add-title" class="text-lg font-semibold">Adicionar Investimento</h2>
+  <form id="inv-form" class="card grid sm:grid-cols-2 gap-4">
+    <div>
+      <label class="text-sm">Tipo</label>
+      <select name="type" class="select" required>
+        <option>Ações</option>
+        <option>ETF</option>
+        <option>FII</option>
+        <option>Renda Fixa</option>
+        <option>Tesouro</option>
+        <option>Fundo</option>
+        <option>Cripto</option>
+        <option>Outros</option>
+      </select>
+    </div>
+    <div>
+      <label class="text-sm">Símbolo/Ticker</label>
+      <input name="symbol" class="input" placeholder="Ex: PETR4.SA, AAPL, BTC" />
+      <p class="text-xs opacity-70 mt-1">Para ações B3 use sufixo .SA (ex.: PETR4.SA). Para cripto, use o ID do Coingecko abaixo se quiser cotação automática.</p>
+    </div>
+    <div>
+      <label class="text-sm">ID provedor (opcional)</label>
+      <input name="providerSymbol" class="input" placeholder="Ex: bitcoin, ethereum (Coingecko)" />
+    </div>
+    <div>
+      <label class="text-sm">Nome</label>
+      <input name="name" class="input" placeholder="Apple, Tesouro Selic, etc." />
+    </div>
+    <div>
+      <label class="text-sm">Moeda</label>
+      <select name="currency" class="select">
+        <option>BRL</option>
+        <option>USD</option>
+      </select>
+    </div>
+    <div>
+      <label class="text-sm">Quantidade</label>
+      <input name="quantity" type="number" step="any" min="0" class="input" required />
+    </div>
+    <div>
+      <label class="text-sm">Preço Médio</label>
+      <input name="avgPrice" type="number" step="any" min="0" class="input" required />
+    </div>
+    <div>
+      <label class="text-sm">Preço Manual (opcional)</label>
+      <input name="manualPrice" type="number" step="any" min="0" class="input" placeholder="Use quando não houver provedor" />
+    </div>
+    <div>
+      <label class="text-sm">Corretora (opcional)</label>
+      <input name="broker" class="input" />
+    </div>
+    <div class="sm:col-span-2">
+      <label class="text-sm">Tags (opcional)</label>
+      <input name="tags" class="input" placeholder="separe por vírgulas: long, swing, previdência" />
+    </div>
+    <div class="sm:col-span-2">
+      <label class="text-sm">Notas (opcional)</label>
+      <textarea name="notes" class="input" rows="3"></textarea>
+    </div>
+
+    <div class="sm:col-span-2 flex gap-2">
+      <button class="btn" type="submit">Salvar</button>
+      <a class="btn-secondary" href="#/portfolio">Cancelar</a>
+    </div>
+  </form>
+</section>
