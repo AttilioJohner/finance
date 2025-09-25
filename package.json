@@ -1,0 +1,23 @@
+{
+  "name": "financial-control-system",
+  "version": "1.0.0",
+  "description": "Sistema completo de controle pessoal de finanças",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=src",
+    "build-css": "tailwindcss -i ./src/styles/input.css -o ./src/styles/output.css --watch",
+    "build": "tailwindcss -i ./src/styles/input.css -o ./src/styles/output.css --minify",
+    "deploy": "npm run build && git add . && git commit -m \"Deploy: $(date)\" && git push"
+  },
+  "keywords": ["finance", "portfolio", "investments", "dashboard"],
+  "author": "Attilio Johner",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "date-fns": "^2.30.0"
+  }
+}

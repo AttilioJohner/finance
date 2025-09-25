@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Financial Control</title>
+    <link rel="stylesheet" href="../styles/output.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="h-full bg-finance-bg dark:bg-finance-dark-bg">
+    <!-- Navigation Sidebar -->
+    <div class="flex h-full">
+        <nav class="w-64 bg-white dark:bg-finance-dark-card shadow-lg border-r border-gray-200 dark:border-gray-700" id="sidebar">
+            <div class="flex flex-col h-full">
+                <!-- Logo -->
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <div class="h-8 w-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-lg font-semibold text-gray-900 dark:text-white">Financial</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex-1 px-3 py-4 space-y-1">
+                    <a href="#" class="nav-link active" data-page="dashboard">
+                        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v4H8V5z"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <a href="#" class="nav-link" data-page="portfolio">
+                        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-7v12a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707z"></path>
+                        </svg>
+                        Meus Ativos
+                    </a>
+
+                    <a href="#" class="nav-link" data-page="operations">
+                        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Nova Operação
+                    </a>
+
+                    <a href="#" class="nav-link" data-page="transactions">
+                        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Transações
+                    </a>
+
+                    <a href="#" class="nav-link" data-page="reports">
+                        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707v11a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Relatórios
+                    </a>
+                </div>
+
+                <!-- User Menu -->
+                <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center space-x-3">
+                        <div class="h-8 w-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
+                            <span class="text-sm font-medium text-primary-700 dark:text-primary-300" id="userInitials">D</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900 dark:text-white" id="userName">Demo User</p>
+                            <button class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" id="logoutBtn">
+                                Sair
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header class="bg-white dark:bg-finance-dark-card shadow-sm border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-center justify-between h-16 px-6">
+                    <div class="flex items-center space-x-4">
+                        <button class="p-1 rounded-md text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 lg:hidden" id="sidebarToggle">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white" id="pageTitle">Dashboard</h1>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="p-1 rounded-full text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Theme Toggle -->
+                        <button class="p-1 rounded-full text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500" id="themeToggle">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="themeIcon">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Last Update -->
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            <span>Última atualização: </span>
+                            <span id="lastUpdate" class="font-medium">--:--</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="flex-1 overflow-auto p-6">
+                <div id="dashboardContent">
+                    <!-- Portfolio Summary Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- Total Portfolio -->
+                        <div class="card border-l-4 border-primary-500">
+                            <div class="card-body">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Patrimônio Total</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white" id="totalPortfolio">
+                                            <span class="skeleton h-8 w-32 inline-block"></span>
+                                        </p>
+                                    </div>
+                                    <div class="h-12 w-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="indicator-profit text-sm" id="totalGain">
+                                        <span class="skeleton h-4 w-20 inline-block"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Performance -->
+                        <div class="card border-l-4 border-profit">
+                            <div class="card-body">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Performance Mensal</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white" id="monthlyPerformance">
+                                            <span class="skeleton h-8 w-24 inline-block"></span>
+                                        </p>
+                                    </div>
+                                    <div class="h-12 w-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Best Asset -->
+                        <div class="card border-l-4 border-warning">
+                            <div class="card-body">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Melhor Ativo</p>
+                                        <p class="text-lg font-bold text-gray-900 dark:text-white" id="bestAsset">
+                                            <span class="skeleton h-6 w-20 inline-block"></span>
+                                        </p>
+                                        <p class="text-sm text-warning font-semibold" id="bestAssetGain">
+                                            <span class="skeleton h-4 w-16 inline-block"></span>
+                                        </p>
+                                    </div>
+                                    <div class="h-12 w-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Asset Count -->
+                        <div class="card border-l-4 border-gray-400">
+                            <div class="card-body">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total de Ativos</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white" id="assetCount">
+                                            <span class="skeleton h-8 w-16 inline-block"></span>
+                                        </p>
+                                    </div>
+                                    <div class="h-12 w-12 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-7v12a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <!-- Portfolio Allocation -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Alocação do Portfólio</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="allocationChart" width="400" height="300"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Performance Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Evolução do Patrimônio</h3>
+                                    <div class="flex space-x-2">
+                                        <button class="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900" data-period="1M">1M</button>
+                                        <button class="text-xs px-2 py-1 rounded bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300" data-period="3M">3M</button>
+                                        <button class="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900" data-period="1Y">1Y</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="performanceChart" width="400" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Transactions & Top Assets -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Recent Transactions -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Transações Recentes</h3>
+                                    <a href="#" class="text-primary-600 hover:text-primary-500 text-sm font-medium">Ver todas</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="recentTransactions">
+                                    <!-- Loading skeletons -->
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between py-2">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="skeleton h-8 w-8 rounded-full"></div>
+                                                <div>
+                                                    <div class="skeleton h-4 w-20 mb-1"></div>
+                                                    <div class="skeleton h-3 w-16"></div>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="skeleton h-4 w-16 mb-1"></div>
+                                                <div class="skeleton h-3 w-12"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Assets -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Principais Ativos</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="topAssets">
+                                    <!-- Loading skeletons -->
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between py-2">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="skeleton h-8 w-8 rounded"></div>
+                                                <div>
+                                                    <div class="skeleton h-4 w-16 mb-1"></div>
+                                                    <div class="skeleton h-3 w-20"></div>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="skeleton h-4 w-20 mb-1"></div>
+                                                <div class="skeleton h-3 w-16"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other page contents will be loaded here -->
+                <div id="portfolioContent" class="hidden">
+                    <div class="text-center py-12">
+                        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Meus Ativos</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Em desenvolvimento...</p>
+                    </div>
+                </div>
+
+                <div id="operationsContent" class="hidden">
+                    <div class="text-center py-12">
+                        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Nova Operação</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Em desenvolvimento...</p>
+                    </div>
+                </div>
+
+                <div id="transactionsContent" class="hidden">
+                    <div class="text-center py-12">
+                        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Transações</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Em desenvolvimento...</p>
+                    </div>
+                </div>
+
+                <div id="reportsContent" class="hidden">
+                    <div class="text-center py-12">
+                        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Relatórios</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Em desenvolvimento...</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/components/dashboard/dashboard.js"></script>
+</body>
+</html>

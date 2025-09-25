@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Control - Redirecting...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: system-ui, sans-serif;
+            background: #f8fafc;
+            color: #374151;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .loader {
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        a { color: #3b82f6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>💰 Financial Control</h2>
+        <div class="loader"></div>
+        <p>Redirecionando para o sistema...</p>
+        <p><a href="src/index.html">Clique aqui se não for redirecionado automaticamente</a></p>
+    </div>
+
+    <script>
+        // Auto redirect to login page
+        setTimeout(() => {
+            window.location.href = 'src/index.html';
+        }, 1500);
+    </script>
+</body>
+</html>
