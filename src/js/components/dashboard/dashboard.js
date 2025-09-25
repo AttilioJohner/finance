@@ -4,22 +4,26 @@ const STORAGE_KEYS = {
     THEME: 'financial_theme'
 };
 
-// Mock data for demonstration
+// Mock data for demonstration (preços corrigidos Jan 2025)
 const MOCK_DATA = {
     portfolio: {
-        totalValue: 125430.50,
-        totalInvested: 98750.00,
-        monthlyPerformance: 8.75,
-        bestAsset: { symbol: 'PETR4', gain: 15.3 },
-        assetCount: 12
+        totalValue: 287650.75,
+        totalInvested: 245800.00,
+        monthlyPerformance: 12.25,
+        bestAsset: { symbol: 'BTC', gain: 23.8 },
+        assetCount: 15
     },
     assets: [
-        { symbol: 'PETR4', name: 'Petrobrás PN', quantity: 500, avgPrice: 28.45, currentPrice: 32.80, type: 'stock_br' },
-        { symbol: 'ITUB4', name: 'Itau Unibanco PN', quantity: 300, avgPrice: 24.20, currentPrice: 26.75, type: 'stock_br' },
-        { symbol: 'VALE3', name: 'Vale ON', quantity: 200, avgPrice: 65.30, currentPrice: 71.20, type: 'stock_br' },
-        { symbol: 'AAPL', name: 'Apple Inc', quantity: 50, avgPrice: 150.00, currentPrice: 175.50, type: 'stock_us' },
-        { symbol: 'BTC', name: 'Bitcoin', quantity: 0.5, avgPrice: 35000, currentPrice: 42500, type: 'crypto' },
-        { symbol: 'USD', name: 'Dólar Americano', quantity: 2000, avgPrice: 5.20, currentPrice: 4.95, type: 'currency' }
+        { symbol: 'PETR4', name: 'Petrobrás PN', quantity: 500, avgPrice: 35.20, currentPrice: 38.45, type: 'stock_br' },
+        { symbol: 'ITUB4', name: 'Itau Unibanco PN', quantity: 300, avgPrice: 31.80, currentPrice: 33.25, type: 'stock_br' },
+        { symbol: 'VALE3', name: 'Vale ON', quantity: 200, avgPrice: 58.90, currentPrice: 62.15, type: 'stock_br' },
+        { symbol: 'BBAS3', name: 'Banco do Brasil ON', quantity: 250, avgPrice: 24.50, currentPrice: 26.80, type: 'stock_br' },
+        { symbol: 'AAPL', name: 'Apple Inc', quantity: 15, avgPrice: 880.00, currentPrice: 962.50, type: 'stock_us' },
+        { symbol: 'MSFT', name: 'Microsoft Corp', quantity: 12, avgPrice: 2310.00, currentPrice: 2475.00, type: 'stock_us' },
+        { symbol: 'BTC', name: 'Bitcoin', quantity: 0.25, avgPrice: 480000, currentPrice: 525000, type: 'crypto' },
+        { symbol: 'ETH', name: 'Ethereum', quantity: 2.0, avgPrice: 18700, currentPrice: 20350, type: 'crypto' },
+        { symbol: 'USD', name: 'Dólar Americano', quantity: 1000, avgPrice: 5.80, currentPrice: 5.52, type: 'currency' },
+        { symbol: 'HGLG11', name: 'CSHG Logística FII', quantity: 100, avgPrice: 102.50, currentPrice: 108.90, type: 'real_estate' }
     ],
     transactions: [
         { date: '2024-01-15', asset: 'PETR4', type: 'buy', quantity: 100, price: 32.80, total: 3280 },
@@ -227,33 +231,43 @@ class DashboardSystem {
     }
 
     loadTransactionsPage(container) {
-        container.innerHTML = `
-            <div class="text-center py-12">
-                <div class="mx-auto h-24 w-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
-                    <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Transações</h2>
-                <p class="text-gray-600 dark:text-gray-400">Histórico completo de todas as operações realizadas</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">Em desenvolvimento - Próxima atualização</p>
-            </div>
-        `;
+        if (!window.TransactionsSystem) {
+            // Load transactions script dynamically
+            const script = document.createElement('script');
+            script.src = '../js/components/dashboard/transactions.js';
+            script.onload = () => {
+                const transactionsSystem = new window.TransactionsSystem();
+                container.innerHTML = transactionsSystem.renderTransactionsContent();
+                transactionsSystem.setupEventListeners();
+                window.currentTransactionsSystem = transactionsSystem;
+            };
+            document.head.appendChild(script);
+        } else {
+            const transactionsSystem = new window.TransactionsSystem();
+            container.innerHTML = transactionsSystem.renderTransactionsContent();
+            transactionsSystem.setupEventListeners();
+            window.currentTransactionsSystem = transactionsSystem;
+        }
     }
 
     loadReportsPage(container) {
-        container.innerHTML = `
-            <div class="text-center py-12">
-                <div class="mx-auto h-24 w-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
-                    <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707v11a2 2 0 01-2 2z"></path>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Relatórios</h2>
-                <p class="text-gray-600 dark:text-gray-400">Análises detalhadas e relatórios fiscais</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">Em desenvolvimento - Próxima atualização</p>
-            </div>
-        `;
+        if (!window.ReportsSystem) {
+            // Load reports script dynamically
+            const script = document.createElement('script');
+            script.src = '../js/components/dashboard/reports.js';
+            script.onload = () => {
+                const reportsSystem = new window.ReportsSystem();
+                container.innerHTML = reportsSystem.renderReportsContent();
+                reportsSystem.setupEventListeners();
+                window.currentReportsSystem = reportsSystem;
+            };
+            document.head.appendChild(script);
+        } else {
+            const reportsSystem = new window.ReportsSystem();
+            container.innerHTML = reportsSystem.renderReportsContent();
+            reportsSystem.setupEventListeners();
+            window.currentReportsSystem = reportsSystem;
+        }
     }
 
     async loadDashboardData() {

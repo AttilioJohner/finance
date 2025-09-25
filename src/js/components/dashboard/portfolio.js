@@ -11,12 +11,13 @@ class PortfolioSystem {
     getAssets() {
         // Mock data expandido para demonstração
         return [
+            // Ações Brasileiras (valores Janeiro 2025)
             {
                 symbol: 'PETR4',
                 name: 'Petrobras PN',
                 quantity: 500,
-                avgPrice: 28.45,
-                currentPrice: 32.80,
+                avgPrice: 35.20,
+                currentPrice: 38.45,
                 type: 'stock_br',
                 sector: 'Petróleo e Gás',
                 lastUpdate: new Date().toISOString()
@@ -25,8 +26,8 @@ class PortfolioSystem {
                 symbol: 'ITUB4',
                 name: 'Itau Unibanco PN',
                 quantity: 300,
-                avgPrice: 24.20,
-                currentPrice: 26.75,
+                avgPrice: 31.80,
+                currentPrice: 33.25,
                 type: 'stock_br',
                 sector: 'Bancário',
                 lastUpdate: new Date().toISOString()
@@ -35,18 +36,40 @@ class PortfolioSystem {
                 symbol: 'VALE3',
                 name: 'Vale ON',
                 quantity: 200,
-                avgPrice: 65.30,
-                currentPrice: 71.20,
+                avgPrice: 58.90,
+                currentPrice: 62.15,
                 type: 'stock_br',
                 sector: 'Mineração',
                 lastUpdate: new Date().toISOString()
             },
             {
+                symbol: 'BBAS3',
+                name: 'Banco do Brasil ON',
+                quantity: 250,
+                avgPrice: 24.50,
+                currentPrice: 26.80,
+                type: 'stock_br',
+                sector: 'Bancário',
+                lastUpdate: new Date().toISOString()
+            },
+            {
+                symbol: 'WEGE3',
+                name: 'Weg ON',
+                quantity: 100,
+                avgPrice: 42.30,
+                currentPrice: 45.75,
+                type: 'stock_br',
+                sector: 'Bens Industriais',
+                lastUpdate: new Date().toISOString()
+            },
+
+            // Ações Americanas (USD convertido para BRL ~5.50)
+            {
                 symbol: 'AAPL',
                 name: 'Apple Inc',
-                quantity: 50,
-                avgPrice: 150.00,
-                currentPrice: 175.50,
+                quantity: 15,
+                avgPrice: 880.00, // ~160 USD
+                currentPrice: 962.50, // ~175 USD
                 type: 'stock_us',
                 sector: 'Tecnologia',
                 lastUpdate: new Date().toISOString()
@@ -54,19 +77,31 @@ class PortfolioSystem {
             {
                 symbol: 'MSFT',
                 name: 'Microsoft Corp',
-                quantity: 30,
-                avgPrice: 280.00,
-                currentPrice: 320.75,
+                quantity: 12,
+                avgPrice: 2310.00, // ~420 USD
+                currentPrice: 2475.00, // ~450 USD
                 type: 'stock_us',
                 sector: 'Tecnologia',
                 lastUpdate: new Date().toISOString()
             },
             {
+                symbol: 'GOOGL',
+                name: 'Alphabet Inc',
+                quantity: 8,
+                avgPrice: 825.00, // ~150 USD
+                currentPrice: 907.50, // ~165 USD
+                type: 'stock_us',
+                sector: 'Tecnologia',
+                lastUpdate: new Date().toISOString()
+            },
+
+            // Criptomoedas (BRL)
+            {
                 symbol: 'BTC',
                 name: 'Bitcoin',
-                quantity: 0.5,
-                avgPrice: 35000,
-                currentPrice: 42500,
+                quantity: 0.25,
+                avgPrice: 480000, // ~87k USD
+                currentPrice: 525000, // ~95k USD
                 type: 'crypto',
                 sector: 'Criptomoeda',
                 lastUpdate: new Date().toISOString()
@@ -74,29 +109,43 @@ class PortfolioSystem {
             {
                 symbol: 'ETH',
                 name: 'Ethereum',
-                quantity: 2.5,
-                avgPrice: 2200,
-                currentPrice: 2850,
+                quantity: 2.0,
+                avgPrice: 18700, // ~3400 USD
+                currentPrice: 20350, // ~3700 USD
                 type: 'crypto',
                 sector: 'Criptomoeda',
                 lastUpdate: new Date().toISOString()
             },
+
+            // Moedas
             {
                 symbol: 'USD',
                 name: 'Dólar Americano',
-                quantity: 2000,
-                avgPrice: 5.20,
-                currentPrice: 4.95,
+                quantity: 1000,
+                avgPrice: 5.80,
+                currentPrice: 5.52,
                 type: 'currency',
                 sector: 'Moeda',
                 lastUpdate: new Date().toISOString()
             },
             {
+                symbol: 'EUR',
+                name: 'Euro',
+                quantity: 500,
+                avgPrice: 6.20,
+                currentPrice: 5.75,
+                type: 'currency',
+                sector: 'Moeda',
+                lastUpdate: new Date().toISOString()
+            },
+
+            // Fundos Imobiliários
+            {
                 symbol: 'HGLG11',
                 name: 'CSHG Logística FII',
                 quantity: 100,
-                avgPrice: 98.50,
-                currentPrice: 105.20,
+                avgPrice: 102.50,
+                currentPrice: 108.90,
                 type: 'real_estate',
                 sector: 'Fundos Imobiliários',
                 lastUpdate: new Date().toISOString()
@@ -104,9 +153,19 @@ class PortfolioSystem {
             {
                 symbol: 'XPML11',
                 name: 'XP Malls FII',
-                quantity: 150,
-                avgPrice: 89.30,
-                currentPrice: 94.75,
+                quantity: 80,
+                avgPrice: 95.20,
+                currentPrice: 98.75,
+                type: 'real_estate',
+                sector: 'Fundos Imobiliários',
+                lastUpdate: new Date().toISOString()
+            },
+            {
+                symbol: 'KNRI11',
+                name: 'Kinea Renda Imobiliária FII',
+                quantity: 120,
+                avgPrice: 88.40,
+                currentPrice: 92.15,
                 type: 'real_estate',
                 sector: 'Fundos Imobiliários',
                 lastUpdate: new Date().toISOString()
@@ -317,9 +376,12 @@ class PortfolioSystem {
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900 dark:text-white">
                             ${this.formatCurrency(asset.currentPrice)}
+                            ${asset.source ? `<span class="ml-1 text-xs px-2 py-1 rounded-full ${asset.isFallback ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' : 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'}">${asset.isFallback ? 'MOCK' : 'REAL'}</span>` : ''}
                         </div>
                         <div class="text-sm text-gray-500 dark:text-gray-400">
-                            ${this.getRandomPriceChange()}
+                            ${asset.changePercent !== undefined ?
+                                `<span class="${asset.changePercent >= 0 ? 'text-profit' : 'text-loss'}">${asset.changePercent >= 0 ? '+' : ''}${asset.changePercent.toFixed(2)}%</span>`
+                                : this.getRandomPriceChange()}
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
@@ -469,18 +531,82 @@ class PortfolioSystem {
         }
     }
 
-    refreshPrices() {
-        // Simulate price updates
-        this.assets.forEach(asset => {
-            const variation = (Math.random() - 0.5) * 0.1; // ±5% variation
-            asset.currentPrice *= (1 + variation);
-            asset.lastUpdate = new Date().toISOString();
-        });
+    async refreshPrices() {
+        if (!window.quotesService) {
+            this.showNotification('Serviço de cotações não disponível', 'error');
+            return;
+        }
 
-        this.updateAssetsTable();
+        // Show loading state
+        const refreshBtn = document.getElementById('refreshPrices');
+        const originalText = refreshBtn.innerHTML;
+        refreshBtn.innerHTML = `
+            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
+            Atualizando...
+        `;
+        refreshBtn.disabled = true;
 
-        // Show notification
-        this.showNotification('Preços atualizados com sucesso!', 'success');
+        try {
+            // Buscar cotações reais
+            const quotesResults = await window.quotesService.getMultipleQuotes(this.assets);
+            let updatedCount = 0;
+
+            quotesResults.forEach(result => {
+                if (result.success && result.data) {
+                    const asset = this.assets.find(a => a.symbol === result.symbol);
+                    if (asset) {
+                        const oldPrice = asset.currentPrice;
+                        asset.currentPrice = result.data.price;
+                        asset.change = result.data.change;
+                        asset.changePercent = result.data.changePercent;
+                        asset.lastUpdate = result.data.lastUpdate;
+                        asset.source = result.data.source;
+                        asset.isFallback = result.data.isFallback;
+                        updatedCount++;
+
+                        // Log para debug
+                        console.log(`${asset.symbol}: ${oldPrice.toFixed(2)} → ${asset.currentPrice.toFixed(2)} (${result.data.source})`);
+                    }
+                }
+            });
+
+            // Atualizar interface
+            this.updateAssetsTable();
+
+            // Atualizar cards de resumo
+            const totalValue = this.calculateTotalValue();
+            const totalInvested = this.calculateTotalInvested();
+            const totalGain = this.calculateTotalGain();
+            const totalReturn = this.calculateTotalReturn();
+
+            document.getElementById('portfolioTotalValue').textContent = this.formatCurrency(totalValue);
+
+            // Show success notification
+            if (updatedCount > 0) {
+                this.showNotification(`${updatedCount} ativos atualizados com cotações reais!`, 'success');
+            } else {
+                this.showNotification('Usando dados de fallback - APIs indisponíveis', 'info');
+            }
+
+        } catch (error) {
+            console.error('Erro ao atualizar preços:', error);
+            this.showNotification('Erro ao atualizar preços. Usando dados locais.', 'error');
+
+            // Fallback para simulação
+            this.assets.forEach(asset => {
+                const variation = (Math.random() - 0.5) * 0.05; // ±2.5% variation
+                asset.currentPrice *= (1 + variation);
+                asset.lastUpdate = new Date().toISOString();
+                asset.source = 'Simulado';
+            });
+
+            this.updateAssetsTable();
+
+        } finally {
+            // Restore button
+            refreshBtn.innerHTML = originalText;
+            refreshBtn.disabled = false;
+        }
     }
 
     // Calculation methods

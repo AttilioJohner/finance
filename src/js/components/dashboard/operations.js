@@ -15,36 +15,46 @@ class OperationsSystem {
 
     getAssetSuggestions() {
         return [
-            // Ações BR
-            { symbol: 'PETR4', name: 'Petrobras PN', type: 'stock_br', price: 32.80 },
-            { symbol: 'VALE3', name: 'Vale ON', type: 'stock_br', price: 71.20 },
-            { symbol: 'ITUB4', name: 'Itau Unibanco PN', type: 'stock_br', price: 26.75 },
-            { symbol: 'BBDC4', name: 'Bradesco PN', type: 'stock_br', price: 14.50 },
-            { symbol: 'ABEV3', name: 'Ambev SA ON', type: 'stock_br', price: 11.85 },
+            // Ações BR (Janeiro 2025 - preços realistas)
+            { symbol: 'PETR4', name: 'Petrobras PN', type: 'stock_br', price: 38.45 },
+            { symbol: 'VALE3', name: 'Vale ON', type: 'stock_br', price: 62.15 },
+            { symbol: 'ITUB4', name: 'Itau Unibanco PN', type: 'stock_br', price: 33.25 },
+            { symbol: 'BBAS3', name: 'Banco do Brasil ON', type: 'stock_br', price: 26.80 },
+            { symbol: 'BBDC4', name: 'Bradesco PN', type: 'stock_br', price: 13.85 },
+            { symbol: 'WEGE3', name: 'Weg ON', type: 'stock_br', price: 45.75 },
+            { symbol: 'ABEV3', name: 'Ambev SA ON', type: 'stock_br', price: 10.95 },
+            { symbol: 'JBSS3', name: 'JBS ON', type: 'stock_br', price: 28.50 },
+            { symbol: 'MGLU3', name: 'Magazine Luiza ON', type: 'stock_br', price: 8.90 },
 
-            // Ações US
-            { symbol: 'AAPL', name: 'Apple Inc', type: 'stock_us', price: 175.50 },
-            { symbol: 'MSFT', name: 'Microsoft Corp', type: 'stock_us', price: 320.75 },
-            { symbol: 'GOOGL', name: 'Alphabet Inc', type: 'stock_us', price: 142.30 },
-            { symbol: 'AMZN', name: 'Amazon.com Inc', type: 'stock_us', price: 151.90 },
-            { symbol: 'TSLA', name: 'Tesla Inc', type: 'stock_us', price: 248.50 },
+            // Ações US (USD convertido para BRL ~5.50)
+            { symbol: 'AAPL', name: 'Apple Inc', type: 'stock_us', price: 962.50 }, // ~175 USD
+            { symbol: 'MSFT', name: 'Microsoft Corp', type: 'stock_us', price: 2475.00 }, // ~450 USD
+            { symbol: 'GOOGL', name: 'Alphabet Inc', type: 'stock_us', price: 907.50 }, // ~165 USD
+            { symbol: 'AMZN', name: 'Amazon.com Inc', type: 'stock_us', price: 1017.50 }, // ~185 USD
+            { symbol: 'TSLA', name: 'Tesla Inc', type: 'stock_us', price: 1870.00 }, // ~340 USD
+            { symbol: 'NVDA', name: 'NVIDIA Corp', type: 'stock_us', price: 742.50 }, // ~135 USD
+            { symbol: 'META', name: 'Meta Platforms Inc', type: 'stock_us', price: 2970.00 }, // ~540 USD
 
-            // Criptomoedas
-            { symbol: 'BTC', name: 'Bitcoin', type: 'crypto', price: 42500.00 },
-            { symbol: 'ETH', name: 'Ethereum', type: 'crypto', price: 2850.00 },
-            { symbol: 'BNB', name: 'Binance Coin', type: 'crypto', price: 315.20 },
-            { symbol: 'ADA', name: 'Cardano', type: 'crypto', price: 0.52 },
-            { symbol: 'SOL', name: 'Solana', type: 'crypto', price: 105.80 },
+            // Criptomoedas (BRL)
+            { symbol: 'BTC', name: 'Bitcoin', type: 'crypto', price: 525000.00 }, // ~95k USD
+            { symbol: 'ETH', name: 'Ethereum', type: 'crypto', price: 20350.00 }, // ~3.7k USD
+            { symbol: 'BNB', name: 'Binance Coin', type: 'crypto', price: 4015.00 }, // ~730 USD
+            { symbol: 'ADA', name: 'Cardano', type: 'crypto', price: 5.22 }, // ~0.95 USD
+            { symbol: 'SOL', name: 'Solana', type: 'crypto', price: 1034.50 }, // ~188 USD
+            { symbol: 'XRP', name: 'XRP', type: 'crypto', price: 12.65 }, // ~2.30 USD
 
             // Moedas
-            { symbol: 'USD', name: 'Dólar Americano', type: 'currency', price: 4.95 },
-            { symbol: 'EUR', name: 'Euro', type: 'currency', price: 5.35 },
-            { symbol: 'GBP', name: 'Libra Esterlina', type: 'currency', price: 6.25 },
+            { symbol: 'USD', name: 'Dólar Americano', type: 'currency', price: 5.52 },
+            { symbol: 'EUR', name: 'Euro', type: 'currency', price: 5.75 },
+            { symbol: 'GBP', name: 'Libra Esterlina', type: 'currency', price: 6.82 },
+            { symbol: 'JPY', name: 'Iene Japonês', type: 'currency', price: 0.0355 }, // por 100 ienes
 
-            // FIIs
-            { symbol: 'HGLG11', name: 'CSHG Logística FII', type: 'real_estate', price: 105.20 },
-            { symbol: 'XPML11', name: 'XP Malls FII', type: 'real_estate', price: 94.75 },
-            { symbol: 'BTLG11', name: 'BTG Pactual Logística FII', type: 'real_estate', price: 98.50 }
+            // Fundos Imobiliários
+            { symbol: 'HGLG11', name: 'CSHG Logística FII', type: 'real_estate', price: 108.90 },
+            { symbol: 'XPML11', name: 'XP Malls FII', type: 'real_estate', price: 98.75 },
+            { symbol: 'KNRI11', name: 'Kinea Renda Imobiliária FII', type: 'real_estate', price: 92.15 },
+            { symbol: 'BCFF11', name: 'BC Ffii Fundo', type: 'real_estate', price: 75.40 },
+            { symbol: 'VILG11', name: 'Vila Olímpia Corporate FII', type: 'real_estate', price: 82.30 }
         ];
     }
 
