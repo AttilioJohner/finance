@@ -466,13 +466,13 @@ class QuotesService {
             'MGLU3': { price: 5.45, change: -0.12, changePercent: -2.16 },
 
             // Criptomoedas (preços atuais aproximados em BRL)
-            'BTC-USD': { price: 600000, change: 15000, changePercent: 2.56 },
-            'ETH-USD': { price: 17680, change: 420, changePercent: 2.43 },
-            'ADA-USD': { price: 4.42, change: 0.08, changePercent: 1.84 },
-            'DOT-USD': { price: 37.44, change: -0.52, changePercent: -1.37 },
-            'SOL-USD': { price: 936, change: 18.2, changePercent: 1.98 },
-            'BNB-USD': { price: 3432, change: 45.6, changePercent: 1.35 },
-            'XRP-USD': { price: 15.6, change: 0.28, changePercent: 1.82 },
+            'BTC-USD': { price: this.currentUsdBrlRate * 111575, change: this.currentUsdBrlRate * (-1639), changePercent: -1.45 },
+            'ETH-USD': { price: this.currentUsdBrlRate * 3380, change: this.currentUsdBrlRate * 85, changePercent: 2.58 },
+            'ADA-USD': { price: this.currentUsdBrlRate * 0.89, change: this.currentUsdBrlRate * 0.02, changePercent: 2.29 },
+            'DOT-USD': { price: this.currentUsdBrlRate * 7.12, change: this.currentUsdBrlRate * (-0.15), changePercent: -2.06 },
+            'SOL-USD': { price: this.currentUsdBrlRate * 180, change: this.currentUsdBrlRate * 4.2, changePercent: 2.39 },
+            'BNB-USD': { price: this.currentUsdBrlRate * 645, change: this.currentUsdBrlRate * 12.5, changePercent: 1.98 },
+            'XRP-USD': { price: this.currentUsdBrlRate * 3.05, change: this.currentUsdBrlRate * 0.08, changePercent: 2.69 },
 
             // Moedas
             'USD-BRL': { price: this.currentUsdBrlRate, change: 0.02, changePercent: 0.38 },

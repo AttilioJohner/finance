@@ -1,7 +1,7 @@
 // Service Worker para Financial Control PWA
-const CACHE_NAME = 'financial-control-v1.3.0';
-const STATIC_CACHE_NAME = 'financial-static-v1.3.0';
-const DYNAMIC_CACHE_NAME = 'financial-dynamic-v1.3.0';
+const CACHE_NAME = 'financial-control-v1.4.0';
+const STATIC_CACHE_NAME = 'financial-static-v1.4.0';
+const DYNAMIC_CACHE_NAME = 'financial-dynamic-v1.4.0';
 
 // Detectar ambiente e definir base path
 const isGitHubPages = self.location.hostname.includes('github.io');
