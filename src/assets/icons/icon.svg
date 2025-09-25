@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="64" fill="url(#grad)"/>
+  <g fill="white">
+    <!-- Dollar symbol -->
+    <path d="M256 64c-8.837 0-16 7.163-16 16v32h-24c-39.765 0-72 32.235-72 72s32.235 72 72 72h48c13.255 0 24 10.745 24 24s-10.745 24-24 24h-64c-8.837 0-16 7.163-16 16s7.163 16 16 16h40v32c0 8.837 7.163 16 16 16s16-7.163 16-16v-32h24c39.765 0 72-32.235 72-72s-32.235-72-72-72h-48c-13.255 0-24-10.745-24-24s10.745-24 24-24h64c8.837 0 16-7.163 16-16s-7.163-16-16-16h-40V80c0-8.837-7.163-16-16-16z"/>
+    <!-- Chart bars -->
+    <rect x="96" y="384" width="32" height="64" rx="4"/>
+    <rect x="144" y="352" width="32" height="96" rx="4"/>
+    <rect x="192" y="320" width="32" height="128" rx="4"/>
+    <rect x="288" y="336" width="32" height="112" rx="4"/>
+    <rect x="336" y="304" width="32" height="144" rx="4"/>
+    <rect x="384" y="368" width="32" height="80" rx="4"/>
+  </g>
+</svg>

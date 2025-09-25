@@ -24,16 +24,21 @@ class PWAService {
         // Verificar se já está instalado
         this.checkInstallStatus();
 
-        // Mostrar prompt de instalação se apropriado
-        this.setupInstallPrompt();
+        // Configurar listeners de instalação (já feito em setupEventListeners)
 
         console.log('PWA Service initialized successfully');
     }
 
     async registerServiceWorker() {
         try {
-            this.swRegistration = await navigator.serviceWorker.register('/src/sw.js', {
-                scope: '/src/'
+            // Detectar se está no GitHub Pages ou local/Netlify
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const basePath = isGitHubPages ? '/finance' : '';
+            const swPath = basePath + '/src/sw.js';
+            const swScope = basePath + '/src/';
+
+            this.swRegistration = await navigator.serviceWorker.register(swPath, {
+                scope: swScope
             });
 
             console.log('PWA: Service Worker registered successfully');

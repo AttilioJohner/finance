@@ -258,8 +258,11 @@ class PerformanceService {
     }
 
     preloadCriticalResources() {
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const basePath = isGitHubPages ? '/finance' : '';
+
         const criticalResources = [
-            '/src/styles/output.css',
+            basePath + '/src/styles/output.css',
             'https://cdn.jsdelivr.net/npm/chart.js'
         ];
 

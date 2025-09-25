@@ -3,27 +3,31 @@ const CACHE_NAME = 'financial-control-v1.3.0';
 const STATIC_CACHE_NAME = 'financial-static-v1.3.0';
 const DYNAMIC_CACHE_NAME = 'financial-dynamic-v1.3.0';
 
+// Detectar ambiente e definir base path
+const isGitHubPages = self.location.hostname.includes('github.io');
+const BASE_PATH = isGitHubPages ? '/finance' : '';
+
 // Arquivos essenciais para cache estático
 const STATIC_FILES = [
-    '/src/',
-    '/src/index.html',
-    '/src/pages/dashboard.html',
-    '/src/styles/output.css',
-    '/src/js/components/dashboard/dashboard.js',
-    '/src/js/components/dashboard/portfolio.js',
-    '/src/js/components/dashboard/operations.js',
-    '/src/js/components/dashboard/transactions.js',
-    '/src/js/components/dashboard/reports.js',
-    '/src/js/components/dashboard/technicalAnalysis.js',
-    '/src/js/components/auth/login.js',
-    '/src/js/services/quotesService.js',
-    '/src/js/services/alertsService.js',
-    '/src/js/services/technicalAnalysisService.js',
-    '/src/js/services/performanceService.js',
-    '/src/js/services/pwaService.js',
-    '/src/js/utils/constants.js',
-    '/src/js/utils/helpers.js',
-    '/src/manifest.json',
+    BASE_PATH + '/src/',
+    BASE_PATH + '/src/index.html',
+    BASE_PATH + '/src/pages/dashboard.html',
+    BASE_PATH + '/src/styles/output.css',
+    BASE_PATH + '/src/js/components/dashboard/dashboard.js',
+    BASE_PATH + '/src/js/components/dashboard/portfolio.js',
+    BASE_PATH + '/src/js/components/dashboard/operations.js',
+    BASE_PATH + '/src/js/components/dashboard/transactions.js',
+    BASE_PATH + '/src/js/components/dashboard/reports.js',
+    BASE_PATH + '/src/js/components/dashboard/technicalAnalysis.js',
+    BASE_PATH + '/src/js/components/auth/login.js',
+    BASE_PATH + '/src/js/services/quotesService.js',
+    BASE_PATH + '/src/js/services/alertsService.js',
+    BASE_PATH + '/src/js/services/technicalAnalysisService.js',
+    BASE_PATH + '/src/js/services/performanceService.js',
+    BASE_PATH + '/src/js/services/pwaService.js',
+    BASE_PATH + '/src/js/utils/constants.js',
+    BASE_PATH + '/src/js/utils/helpers.js',
+    BASE_PATH + '/src/manifest.json',
     // Chart.js CDN
     'https://cdn.jsdelivr.net/npm/chart.js',
     // Google Fonts
