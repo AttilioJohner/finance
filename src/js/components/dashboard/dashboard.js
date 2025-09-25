@@ -161,11 +161,99 @@ class DashboardSystem {
             if (element) element.classList.add('hidden');
         });
 
-        // Show selected page
+        // Show selected page and load its content
         const targetSection = document.getElementById(`${page}Content`);
         if (targetSection) {
             targetSection.classList.remove('hidden');
+
+            // Load page-specific content
+            this.loadPageContent(page, targetSection);
         }
+    }
+
+    loadPageContent(page, container) {
+        switch (page) {
+            case 'portfolio':
+                this.loadPortfolioPage(container);
+                break;
+            case 'operations':
+                this.loadOperationsPage(container);
+                break;
+            case 'transactions':
+                this.loadTransactionsPage(container);
+                break;
+            case 'reports':
+                this.loadReportsPage(container);
+                break;
+        }
+    }
+
+    loadPortfolioPage(container) {
+        if (!window.PortfolioSystem) {
+            // Load portfolio script dynamically
+            const script = document.createElement('script');
+            script.src = '../js/components/dashboard/portfolio.js';
+            script.onload = () => {
+                const portfolioSystem = new window.PortfolioSystem();
+                container.innerHTML = portfolioSystem.renderPortfolioContent();
+                portfolioSystem.setupEventListeners();
+            };
+            document.head.appendChild(script);
+        } else {
+            const portfolioSystem = new window.PortfolioSystem();
+            container.innerHTML = portfolioSystem.renderPortfolioContent();
+            portfolioSystem.setupEventListeners();
+        }
+    }
+
+    loadOperationsPage(container) {
+        if (!window.OperationsSystem) {
+            // Load operations script dynamically
+            const script = document.createElement('script');
+            script.src = '../js/components/dashboard/operations.js';
+            script.onload = () => {
+                const operationsSystem = new window.OperationsSystem();
+                container.innerHTML = operationsSystem.renderOperationsContent();
+                operationsSystem.setupEventListeners();
+                window.currentOperationsSystem = operationsSystem;
+            };
+            document.head.appendChild(script);
+        } else {
+            const operationsSystem = new window.OperationsSystem();
+            container.innerHTML = operationsSystem.renderOperationsContent();
+            operationsSystem.setupEventListeners();
+            window.currentOperationsSystem = operationsSystem;
+        }
+    }
+
+    loadTransactionsPage(container) {
+        container.innerHTML = `
+            <div class="text-center py-12">
+                <div class="mx-auto h-24 w-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+                    <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Transações</h2>
+                <p class="text-gray-600 dark:text-gray-400">Histórico completo de todas as operações realizadas</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">Em desenvolvimento - Próxima atualização</p>
+            </div>
+        `;
+    }
+
+    loadReportsPage(container) {
+        container.innerHTML = `
+            <div class="text-center py-12">
+                <div class="mx-auto h-24 w-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+                    <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707v11a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Relatórios</h2>
+                <p class="text-gray-600 dark:text-gray-400">Análises detalhadas e relatórios fiscais</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">Em desenvolvimento - Próxima atualização</p>
+            </div>
+        `;
     }
 
     async loadDashboardData() {

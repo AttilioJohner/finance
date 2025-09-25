@@ -72,6 +72,20 @@
   .nav-link.active {
     @apply bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300;
   }
+
+  /* Operation Type Buttons */
+  .operation-type-btn {
+    @apply flex flex-col items-center justify-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-primary-300 dark:hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 cursor-pointer;
+  }
+
+  .operation-type-btn.active {
+    @apply border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300;
+  }
+
+  /* Asset suggestions dropdown */
+  .asset-suggestion-item {
+    @apply p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-200 dark:border-gray-600 last:border-b-0;
+  }
 }
 
 /* Custom Utilities */
