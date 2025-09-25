@@ -236,8 +236,8 @@ class AlertsService {
         try {
             await window.pwaService.sendNotification(`Alerta de Preço - ${alert.symbol}`, {
                 body: message,
-                icon: '/src/assets/icons/icon-192x192.png',
-                badge: '/src/assets/icons/alert-96.png',
+                icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23f59e0b' rx='24'/><text y='120' font-size='100' x='96' text-anchor='middle' fill='white'>🚨</text></svg>",
+                badge: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' fill='%23f59e0b' rx='12'/><text y='60' font-size='48' x='48' text-anchor='middle' fill='white'>🔔</text></svg>",
                 tag: `price-alert-${alert.id}`,
                 requireInteraction: true,
                 actions: [
