@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Financial Control</title>
-    <link rel="stylesheet" href="../styles/output.css">
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Dashboard do sistema de controle financeiro pessoal">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="background-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Financial Control">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="../manifest.json">
+
+    <!-- Icons -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/output.css">
+
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="h-full bg-finance-bg dark:bg-finance-dark-bg">
@@ -210,6 +228,47 @@
                         </div>
                     </div>
 
+                    <!-- Quick Actions -->
+                    <div class="mb-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Ações Rápidas</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <button onclick="window.technicalAnalysisComponent?.show()" class="flex items-center justify-center px-4 py-3 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                        </svg>
+                                        Análise Técnica
+                                    </button>
+
+                                    <button onclick="window.alertsService?.showAlertsModal()" class="flex items-center justify-center px-4 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19H6.931l-1.25-1.25a1.5 1.5 0 01-.44-1.06V10a6 6 0 1112 0v6.69a1.5 1.5 0 01-.44 1.06L15.07 19H11z"></path>
+                                        </svg>
+                                        Alertas
+                                    </button>
+
+                                    <button onclick="document.querySelector('[data-page=\"operations\"]').click()" class="flex items-center justify-center px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
+                                        Nova Operação
+                                    </button>
+
+                                    <button onclick="document.querySelector('[data-page=\"reports\"]').click()" class="flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707v11a2 2 0 01-2 2z"></path>
+                                        </svg>
+                                        Relatórios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Charts Row -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                         <!-- Portfolio Allocation -->
@@ -217,8 +276,8 @@
                             <div class="card-header">
                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Alocação do Portfólio</h3>
                             </div>
-                            <div class="card-body">
-                                <canvas id="allocationChart" width="400" height="300"></canvas>
+                            <div class="card-body chart-container" data-lazy-component="chart" data-chart-type="allocation">
+                                <canvas id="allocationChart" width="400" height="300" style="display: none;"></canvas>
                             </div>
                         </div>
 
@@ -234,8 +293,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <canvas id="performanceChart" width="400" height="300"></canvas>
+                            <div class="card-body chart-container" data-lazy-component="chart" data-chart-type="performance">
+                                <canvas id="performanceChart" width="400" height="300" style="display: none;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -334,7 +393,12 @@
     </div>
 
     <!-- Scripts -->
+    <script src="../js/services/pwaService.js"></script>
     <script src="../js/services/quotesService.js"></script>
+    <script src="../js/services/alertsService.js"></script>
+    <script src="../js/services/technicalAnalysisService.js"></script>
+    <script src="../js/services/performanceService.js"></script>
+    <script src="../js/components/dashboard/technicalAnalysis.js"></script>
     <script src="../js/components/dashboard/dashboard.js"></script>
 </body>
 </html>

@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Control - Login</title>
-    <link rel="stylesheet" href="styles/output.css">
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Sistema completo de controle pessoal de finanças e investimentos">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="background-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Financial Control">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="application-name" content="Financial Control">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/output.css">
 </head>
 <body class="h-full bg-finance-bg dark:bg-finance-dark-bg">
     <!-- Background Pattern -->
@@ -160,6 +178,7 @@
         </div>
     </div>
 
+    <script src="js/services/pwaService.js"></script>
     <script src="js/components/auth/login.js"></script>
 </body>
 </html>
